@@ -14,13 +14,13 @@ export default class Player extends React.Component {
         this.setState({
             line: 1+i
         })
-        if (this.props.videoUrl=='')return;
+        if (this.props.videoUrl==='')return;
         this.setState({
             url: this.state.ports[this.state.line] + this.props.videoUrl
         })
     }
     componentWillReceiveProps(nextProps) {
-        if (this.props.videoUrl == '') return;
+        if (this.props.videoUrl === '') return;
         this.setState({
             url: this.state.ports[this.state.line]+ nextProps.videoUrl
         })
@@ -34,7 +34,7 @@ export default class Player extends React.Component {
                     <div className="url-btn">
                         <p>线路</p>
                         {this.state.ports.map((item, index) => {
-                            return <span className={this.state.line==(index+1)?'on':''} onClick={this.handleCheck.bind(this,index)} key={index}>{index + 1}</span>
+                            return <span className={this.state.line===(index+1)?'on':''} onClick={this.handleCheck.bind(this,index)} key={index}>{index + 1}</span>
                         })}
                     </div>
                 </div>
