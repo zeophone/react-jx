@@ -5,7 +5,7 @@ export default class Player extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            ports: ['https://api.sigujx.com/?url=', 'https://api.sigujx.com/?url=', 'https://api.sigujx.com/?url=', 'https://api.sigujx.com/?url=', 'https://api.sigujx.com/?url='],
+            ports: ['https://api.sigujx.com/?url=', 'https://jx.618g.com/?url=', 'http://yun.360dy.wang/?url=', 'https://www.aiyexue.com/vip/?url=', 'https://api.sigujx.com/?url='],
             url: '',
             line: 1
         }
