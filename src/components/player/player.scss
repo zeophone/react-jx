@@ -1,23 +1,37 @@
-.player{
+.player {
     text-align: center;
+
     .iframe {
         display: inline-block;
         position: relative;
+         background: #333;
     }
-    .url-btn{
+
+    .iframe-fixed {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 99;
+         background: #333;
+    }
+
+    .url-btn {
         position: absolute;
         display: flex;
         flex-direction: column;
         left: 10px;
         top: 10px;
-        visibility:hidden;
-        p{
+        visibility: hidden;
+        z-index: 100;
+        p {
             color: #fff;
             font-size: 12px;
-             cursor: default;
-             height: 20px;
+            cursor: default;
+            height: 20px;
         }
-        span{
+        span {
             width: 20px;
             height: 20px;
             color: #fff;
@@ -27,47 +41,103 @@
             cursor: pointer;
             background: #999;
         }
-        .on{
+        .on {
             background: #51c7a2;
         }
+    }
 
+    .hd-input {
+        line-height: 40px;
+        padding-top: 20px;
+        .input-warp {
+            display: inline-block;
+            position: relative;
+            height: 40px;
+        }
+
+        .icon-play {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: url('../../assets/player.png') no-repeat 0 1px;
+            background-size: 100%;
+            right: 0;
+            top: 0;
+        }
+
+        input {
+            width: 100%;
+            height: 100%;
+            padding-left: 10px;
+            padding-right: 40px;
+            background: #f2f2f2;
+            border: 1px solid #ccc;
+        }
+
+        input::placeholder {
+            color: #999;
+        }
+
+        @media only screen and (max-width: 992px) {
+
+            /* 当设备宽度小于等于992px时 */
+            .input-warp {
+                width: 80%;
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+
+            /* 当设备宽度小于等于600px时 */
+            .input-warp {
+                width: 98%;
+
+            }
+        }
+
+        @media only screen and (min-width: 993px) {
+
+            /* 当设置宽度大于等于993px时 */
+            .input-warp {
+                width: 50%;
+            }
+        }
     }
-    .iframe:hover .url-btn{
-        visibility:visible;
+
+    .iframe:hover .url-btn {
+        visibility: visible;
     }
-    
-    iframe{
+
+    iframe {
         width: 100%;
         height: 100%;
     }
+
     @media only screen and (max-width: 992px) {
 
         /* 当设备宽度小于等于992px时 */
         .iframe {
             width: 80%;
             height: 300px;
-            background: #333;
         }
     }
 
     @media only screen and (max-width: 600px) {
 
         /* 当设备宽度小于等于600px时 */
-         .iframe {
-             width: 90%;
-             height: 300px;
-             background: #333;
-         }
+        .iframe {
+            width: 90%;
+            height: 240px;
+        }
     }
 
     @media only screen and (min-width: 993px) {
 
         /* 当设置宽度大于等于993px时 */
-         .iframe {
-             width: 70%;
-             height: 500px;
-             background: #333;
-         }
+        .iframe {
+            width: 60%;
+            height: 500px;
+        }
     }
 
 }
