@@ -1,0 +1,3 @@
+直接上传至空间目录，访问你的域名对应地址即可。如：上传在vip目录 访问 www.ai675.com/vip
+修改友情链接类容在index.html里面
+www.ai675.com

@@ -1,10 +1,10 @@
 .player {
     text-align: center;
-
+    min-height: 300px;
     .iframe {
         display: inline-block;
         position: relative;
-         background: #333;
+        background: #333;
     }
 
     .iframe-fixed {
@@ -16,14 +16,20 @@
         z-index: 99;
          background: #333;
     }
-
-    .url-btn {
+    .btn-fixed{
+        position: fixed;  
+        z-index: 1000;
+        visibility: hidden;
+    }
+    .url-btn{
         position: absolute;
+        visibility: hidden;
+    }
+    aside{
         display: flex;
         flex-direction: column;
         left: 10px;
         top: 10px;
-        visibility: hidden;
         z-index: 100;
         p {
             color: #fff;
@@ -54,7 +60,6 @@
             position: relative;
             height: 40px;
         }
-
         .icon-play {
             position: absolute;
             width: 40px;
@@ -104,7 +109,7 @@
         }
     }
 
-    .iframe:hover .url-btn {
+    .iframe:hover .url-btn,.iframe:hover .btn-fixed{
         visibility: visible;
     }
 
@@ -141,3 +146,49 @@
     }
 
 }
+
+        .text {
+            text-align: center;
+            color: #999;
+            font-size: 14px;
+            line-height: 40px;
+            padding-bottom: 40px;
+        }
+
+        .text .line {
+            border-bottom: 1px solid rgb(170, 169, 169);
+            width: 60%;
+            display: inline-block;
+        }
+
+        .text .left {
+            width: 60%;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .fw {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .link {
+            display: inline-block;
+            width: 80px;
+            height: 30px;
+            margin-right: 20px;
+            line-height: 30px;
+            text-align: center;
+            color: #fff;
+            background: rgb(3, 170, 128);
+        }
+
+        @media only screen and (max-width: 992px) {
+            .text .line {
+                width: 80%;
+            }
+
+            .text .left {
+                width: 80%;
+            }
+        }
