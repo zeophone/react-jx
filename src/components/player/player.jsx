@@ -17,11 +17,14 @@ export default class Player extends React.Component {
     handleCheck(i) {
         this.setState({
             line: i
+        },()=>{
+           if (this.state.origin === '') return;
+           this.setState({
+                url: window.atob(this.state.ports[this.state.line]) + this.state.origin
+            }) 
         })
-        if (this.state.origin === '') return;
-        this.setState({
-            url: window.atob(this.state.ports[this.state.line]) + this.state.origin
-        })
+        
+        
     }
     changeOrigin(event) {
         this.setState({
