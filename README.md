@@ -1,4 +1,4 @@
-示范网站：(www.ai675.com) 
+DEMO：www.ai675.com)
 
 ## Available Scripts
 
