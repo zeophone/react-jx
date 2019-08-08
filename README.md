@@ -1,4 +1,4 @@
-DEMO：www.ai675.com)
+DEMO：www.ai675.com
 
 ## Available Scripts
 
