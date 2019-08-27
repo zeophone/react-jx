@@ -121,7 +121,7 @@ header h1 {
 
     /* 当设备宽度小于等于600px时 */
     #root {
-        min-height: 340px;
+        min-height: 440px;
     }
 }
 
