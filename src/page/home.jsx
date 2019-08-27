@@ -7,7 +7,7 @@ export default class Home extends React.Component {
         return (
             <div>
                 <Player></Player>
-                <Support></Support>
+                {/* <Support></Support> */}
             </div>
         )
     }

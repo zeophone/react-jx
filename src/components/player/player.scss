@@ -1,7 +1,7 @@
 .player {
     text-align: center;
     min-height: 300px;
-    .iframe {
+    .iframe{
         display: inline-block;
         position: relative;
         background: #333;
@@ -14,7 +14,7 @@
         right: 0;
         bottom: 0;
         z-index: 99;
-         background: #333;
+        background: #333;
     }
     .btn-fixed{
         position: fixed;  
@@ -51,69 +51,91 @@
             background: #51c7a2;
         }
     }
-
-    .hd-input {
-        line-height: 40px;
-        padding-top: 20px;
-        .input-warp {
-            display: inline-block;
-            position: relative;
-            height: 40px;
-        }
-        .icon-play {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background: url('../../assets/player.png') no-repeat 0 1px;
-            background-size: 100%;
-            right: 0;
-            top: 0;
-        }
-
-        input {
-            width: 100%;
-            height: 100%;
-            padding-left: 10px;
-            padding-right: 40px;
-            background: #f2f2f2;
-            border: 1px solid #ccc;
-        }
-
-        input::placeholder {
-            color: #999;
-        }
-
-        @media only screen and (max-width: 992px) {
-
-            /* 当设备宽度小于等于992px时 */
-            .input-warp {
-                width: 80%;
+    .control-warp{
+        display: inline-block;
+        .hd-input {
+            height: 60px;
+            padding-top: 20px;
+            display: flex;
+            align-items: center;
+            .live-item{
+                margin-right: 10px;
+                font-size: 14px;
+                float: left;
+                color: #777;
+                cursor: pointer;
             }
-        }
-
-        @media only screen and (max-width: 600px) {
-
-            /* 当设备宽度小于等于600px时 */
-            .input-warp {
-                width: 98%;
-
+            .live-item:hover{
+                color: #7d89fa;
             }
-        }
-
-        @media only screen and (min-width: 993px) {
-
-            /* 当设置宽度大于等于993px时 */
-            .input-warp {
-                width: 50%;
+            .hd-lable{
+                margin-right: 20px;
+                color: #484848;
+                font-size: 18px;
+                flex: 1;
             }
-        }
+            .input-warp {
+                display: inline-block;
+                position: relative;
+                height: 40px;
+                flex: 9;
+            }
+            .icon-play {
+                position: absolute;
+                width: 40px;
+                height: 40px;
+                background: url('../../assets/player.png') no-repeat 0 1px;
+                background-size: 100%;
+                right: 0;
+                top: 0;
+            }
+
+            input {
+                width: 100%;
+                height: 100%;
+                padding-left: 10px;
+                padding-right: 40px;
+                background: #f2f2f2;
+                border: 1px solid #ccc;
+            }
+
+            input::placeholder {
+                color: #999;
+            }
+
+            @media only screen and (max-width: 992px) {
+
+                /* 当设备宽度小于等于992px时 */
+                .input-warp {
+                    width: 70%;
+                }
+            }
+
+            @media only screen and (max-width: 600px) {
+
+                /* 当设备宽度小于等于600px时 */
+                .input-warp {
+                    width: 70%;
+
+                }
+            }
+
+            @media only screen and (min-width: 993px) {
+
+                /* 当设置宽度大于等于993px时 */
+                .input-warp {
+                    width: 50%;
+                }
+            }
+        }        
     }
+
 
     .iframe:hover .url-btn,.iframe:hover .btn-fixed{
         visibility: visible;
     }
 
-    iframe {
+    iframe,#dp-warp{
         width: 100%;
         height: 100%;
     }
@@ -125,6 +147,9 @@
             width: 80%;
             height: 300px;
         }
+        .control-warp{
+            width: 80%;
+        }
     }
 
     @media only screen and (max-width: 600px) {
@@ -134,6 +159,9 @@
             width: 90%;
             height: 240px;
         }
+        .control-warp{
+            width: 90%;
+        }
     }
 
     @media only screen and (min-width: 993px) {
@@ -142,6 +170,9 @@
         .iframe {
             width: 60%;
             height: 500px;
+        }
+        .control-warp{
+            width: 60%;
         }
     }
 

@@ -1,18 +1,25 @@
 import React from "react";
 import './player.scss';
+import live from './live.js';
+import 'dplayer/dist/DPlayer.min.css';
+import DPlayer from 'dplayer';
+
 
 export default class Player extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            ports: ["aHR0cHM6Ly9hcGkuc2lndWp4LmNvbS8/dXJsPQ==", "aHR0cHM6Ly9qeC42MThnLmNvbS8/dXJsPQ==", "aHR0cDovL3l1bi4zNjBkeS53YW5nLz91cmw9", "aHR0cHM6Ly93d3cuYWl5ZXh1ZS5jb20vcG9ydC8/dXJsPQ=="],
+            ports: ["aHR0cHM6Ly9hcGkuc2lndWp4LmNvbS8/dXJsPQ==", "aHR0cHM6Ly9qeC42MThnLmNvbS8/dXJsPQ==", "aHR0cDovL3l1bi4zNjBkeS53YW5nLz91cmw9", "aHR0cHM6Ly9hcGkubGhoLmxhL3ZpcC8/dXJsPQ=="],
             url: '',
             origin: '',
             line: 0,
-            ifFull: false
+            ifFull: false,
+            isLive: false,
+            m3u8:''
         }
         this.changeOrigin = this.changeOrigin.bind(this);
         this.openPlay = this.openPlay.bind(this);
+        this.openLive = this.openLive.bind(this);
     }
     handleCheck(i) {
         this.setState({
@@ -26,12 +33,29 @@ export default class Player extends React.Component {
         
         
     }
+    openLive(i){
+       this.setState({
+           isLive: true
+       },()=>{
+         const dp = new DPlayer({
+             container:document.getElementById('dp-warp'),
+             live : true,
+             autoplay:true,
+             video: {
+                url: live[i].m3u8
+             }
+         })
+       })
+    }
     changeOrigin(event) {
         this.setState({
             origin: event.target.value
         })
     }
     openPlay() {
+        this.setState({
+            isLive: false
+        })
         if (this.state.origin === '') return;
         localStorage.setItem('originUrl', this.state.origin);
         this.setState({
@@ -69,20 +93,40 @@ export default class Player extends React.Component {
         return (
             <div className="player">
                 <div className={this.state.isFull ? 'iframe-fixed' : 'iframe'}>
-                    <iframe src={this.state.url} title="播放器" frameBorder="1"></iframe>
-                    <aside className={this.state.isFull ? 'btn-fixed' : 'url-btn'}>
-                        <p>线路</p>
-                        {this.state.ports.map((item, index) => {
-                            return <span className={this.state.line === index ? 'on' : ''} onClick={this.handleCheck.bind(this, index)} key={index}>{index + 1}</span>
-                        })}
-                    </aside>
+                    {this.state.isLive
+                          ?<div id="dp-warp"></div>
+                        :<iframe src={this.state.url} title="播放器" frameBorder="1"></iframe>
+                    }
+                    {this.state.isLive
+                        ?'':<aside className={this.state.isFull ? 'btn-fixed' : 'url-btn'}>
+                            <p>线路</p>
+                            {this.state.ports.map((item, index) => {
+                                return <span className={this.state.line === index ? 'on' : ''} onClick={this.handleCheck.bind(this, index)} key={index}>{index + 1}</span>
+                            })}
+                        </aside>                        
+                    }
+
                 </div>
-                <div className="hd-input">
-                    <div className="input-warp">
-                        <input placeholder="粘贴原视频播放地址" value={this.state.origin} onChange={this.changeOrigin} type="text" />
-                        <i className="icon-play" onClick={this.openPlay}></i>
+                <div className="control-warp">
+                    <div className="hd-input">
+                        <div className="hd-lable">点播</div>
+                        <div className="input-warp">
+                            <input placeholder="粘贴原视频播放地址" value={this.state.origin} onChange={this.changeOrigin} type="text" />
+                            <i className="icon-play" onClick={this.openPlay}></i>
+                        </div>
                     </div>
+                    <div className="hd-input">
+                        <div className="hd-lable">直播</div>
+                        <div className="input-warp">
+                        {
+                            live.map((item,index) => {
+                                return <span className="live-item" onClick={this.openLive.bind(this,index)} key={index}>{item.name}</span>
+                            })
+                        }
+                        </div>
+                    </div>                    
                 </div>
+
             </div>
         )
     }

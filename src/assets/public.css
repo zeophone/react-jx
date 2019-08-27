@@ -108,3 +108,27 @@ header h1 {
     height: 60px;
     line-height: 60px;
 }
+#root{margin-bottom: 10px;}
+@media only screen and (max-width: 992px) {
+
+    /* 当设备宽度小于等于992px时 */
+    #root {
+        min-height: 400px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    /* 当设备宽度小于等于600px时 */
+    #root {
+        min-height: 340px;
+    }
+}
+
+@media only screen and (min-width: 993px) {
+
+    /* 当设置宽度大于等于993px时 */
+     #root {
+        min-height: 600px;
+    }
+}
