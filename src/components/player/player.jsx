@@ -15,7 +15,8 @@ export default class Player extends React.Component {
             line: 0,
             ifFull: false,
             isLive: false,
-            m3u8:''
+            m3u8:'',
+            on:-1
         }
         this.changeOrigin = this.changeOrigin.bind(this);
         this.openPlay = this.openPlay.bind(this);
@@ -34,6 +35,9 @@ export default class Player extends React.Component {
         
     }
     openLive(i){
+        this.setState({
+            on:i
+        })
        this.setState({
            isLive: true
        },()=>{
@@ -55,6 +59,9 @@ export default class Player extends React.Component {
     openPlay() {
         this.setState({
             isLive: false
+        })
+        this.setState({
+            on:-1
         })
         if (this.state.origin === '') return;
         localStorage.setItem('originUrl', this.state.origin);
@@ -120,7 +127,7 @@ export default class Player extends React.Component {
                         <div className="input-warp">
                         {
                             live.map((item,index) => {
-                                return <span className="live-item" onClick={this.openLive.bind(this,index)} key={index}>{item.name}</span>
+                                return <span  className={index===this.state.on?'on live-item':'live-item'} onClick={this.openLive.bind(this,index)} key={index}>{item.name}</span>
                             })
                         }
                         </div>

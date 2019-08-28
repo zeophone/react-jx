@@ -113,7 +113,7 @@ header h1 {
 
     /* 当设备宽度小于等于992px时 */
     #root {
-        min-height: 400px;
+        min-height: 460px;
     }
 }
 
@@ -121,7 +121,7 @@ header h1 {
 
     /* 当设备宽度小于等于600px时 */
     #root {
-        min-height: 440px;
+        min-height: 480px;
     }
 }
 
