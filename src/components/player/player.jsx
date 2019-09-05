@@ -9,18 +9,22 @@ export default class Player extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            ports: ["aHR0cHM6Ly9hcGkuc2lndWp4LmNvbS8/dXJsPQ==", "aHR0cHM6Ly9qeC42MThnLmNvbS8/dXJsPQ==", "aHR0cDovL3l1bi4zNjBkeS53YW5nLz91cmw9", "aHR0cHM6Ly9hcGkubGhoLmxhL3ZpcC8/dXJsPQ=="],
+            ports: ["aHR0cDovL3ZpcC5haTY3NS5jb20vbGluZXM/dXJsPQ==", "aHR0cHM6Ly9qeC42MThnLmNvbS8/dXJsPQ==", "aHR0cDovL3l1bi4zNjBkeS53YW5nLz91cmw9", "aHR0cHM6Ly9hcGkubGhoLmxhL3ZpcC8/dXJsPQ=="],
+            search:'aHR0cDovL3ZpcC5haTY3NS5jb20vbGluZXM/bmFtZT0=',
             url: '',
             origin: '',
             line: 0,
+            searchName: '',
             ifFull: false,
             isLive: false,
             m3u8:'',
             on:-1
         }
         this.changeOrigin = this.changeOrigin.bind(this);
+        this.changeName = this.changeName.bind(this);
         this.openPlay = this.openPlay.bind(this);
         this.openLive = this.openLive.bind(this);
+        this.searchPlay = this.searchPlay.bind(this);
     }
     handleCheck(i) {
         this.setState({
@@ -56,6 +60,11 @@ export default class Player extends React.Component {
             origin: event.target.value
         })
     }
+    changeName(event){
+        this.setState({
+            searchName: event.target.value
+        })
+    }
     openPlay() {
         this.setState({
             isLive: false
@@ -67,6 +76,18 @@ export default class Player extends React.Component {
         localStorage.setItem('originUrl', this.state.origin);
         this.setState({
             url: window.atob(this.state.ports[this.state.line]) + this.state.origin
+        })
+    }
+    searchPlay(){
+        this.setState({
+            isLive: false
+        })
+        this.setState({
+            on:-1
+        })
+        if (this.state.searchName === '') return;
+        this.setState({
+            url: window.atob(this.state.search) + this.state.searchName
         })
     }
     getQueryString(name) {
@@ -83,11 +104,11 @@ export default class Player extends React.Component {
                 this.openPlay()
             }) 
         }
-        if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
-            this.setState({
-                ports: this.state.ports.reverse()
-            })
-        }
+        // if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+        //     this.setState({
+        //         ports: this.state.ports.reverse()
+        //     })
+        // }
     }
     componentDidMount() {
         if (localStorage.getItem('originUrl')) {
@@ -104,19 +125,26 @@ export default class Player extends React.Component {
                           ?<div id="dp-warp"></div>
                         :<iframe src={this.state.url} title="播放器" frameBorder="1"></iframe>
                     }
-                    {this.state.isLive
+                    {/* {this.state.isLive
                         ?'':<aside className={this.state.isFull ? 'btn-fixed' : 'url-btn'}>
                             <p>线路</p>
                             {this.state.ports.map((item, index) => {
                                 return <span className={this.state.line === index ? 'on' : ''} onClick={this.handleCheck.bind(this, index)} key={index}>{index + 1}</span>
                             })}
                         </aside>                        
-                    }
+                    } */}
 
                 </div>
                 <div className="control-warp">
                     <div className="hd-input">
-                        <div className="hd-lable">点播</div>
+                        <div className="hd-lable">搜索</div>
+                        <div className="input-warp">
+                            <input placeholder="输入电影名称" value={this.state.searchName} onChange={this.changeName} type="text" />
+                            <i className="icon-search" onClick={this.searchPlay}></i>
+                        </div>
+                    </div>
+                    <div className="hd-input">
+                        <div className="hd-lable">解析</div>
                         <div className="input-warp">
                             <input placeholder="粘贴原视频播放地址" value={this.state.origin} onChange={this.changeOrigin} type="text" />
                             <i className="icon-play" onClick={this.openPlay}></i>

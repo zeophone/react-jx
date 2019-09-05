@@ -1,8 +1,10 @@
-DEMO：www.ai675.com
+演示网站：www.ai675.com
 
-## Available Scripts
+## 视频地址解析
+## 视频名称搜索
+## 电影直播
 
-In the project directory, you can run:
+加群 306704676 下载已打包版本
 
 ### `npm start`
 
