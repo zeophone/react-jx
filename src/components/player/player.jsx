@@ -85,9 +85,19 @@ export default class Player extends React.Component {
         this.setState({
             on:-1
         })
-        if (this.state.searchName === '') return;
+        let name= '';
+        if (this.state.searchName === ''){
+            return;
+        }else{
+            if(this.state.searchName.indexOf('@')>-1){
+             name = this.state.searchName.split('@').join('&episode=');
+            }else{
+                name=this.state.searchName;
+            }
+            
+        }
         this.setState({
-            url: window.atob(this.state.search) + this.state.searchName
+            url: window.atob(this.state.search) + name
         })
     }
     getQueryString(name) {
@@ -139,7 +149,7 @@ export default class Player extends React.Component {
                     <div className="hd-input">
                         <div className="hd-lable">搜索</div>
                         <div className="input-warp">
-                            <input placeholder="输入电影名称" value={this.state.searchName} onChange={this.changeName} type="text" />
+                            <input placeholder="输入电影名称或电视剧名@集数" value={this.state.searchName} onChange={this.changeName} type="text" />
                             <i className="icon-search" onClick={this.searchPlay}></i>
                         </div>
                     </div>
